@@ -1,4 +1,4 @@
-import type { Track } from "../track.ts";
+import type { Track } from "./track.ts";
 import type { TrackRepository } from "./track.repository.ts";
 
 export class TrackInMemoryRepository implements TrackRepository {

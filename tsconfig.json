@@ -7,9 +7,14 @@
     "verbatimModuleSyntax": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "dist",
-    "rootDir": "src",
     "sourceMap": true
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "tests/track-in-memory.repository.test.ts",
+    "tests/track.schema.test.ts",
+    "tests/track.service.test.ts",
+    "tests/app.test.ts",
+    "tests/track.test.ts"
+  ]
 }

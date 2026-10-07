@@ -1,6 +1,6 @@
 import { TrackAlreadyExistsError, TrackNotFoundError } from "../errors.ts";
 import { availabilityLabel, trackUrn, type Track } from "./track.ts";
-import type { TrackRepository } from "./repository/track.repository.ts";
+import type { TrackRepository } from "./track.repository.ts";
 import type { TrackInput } from "./track.schema.ts";
 
 export class TrackService {

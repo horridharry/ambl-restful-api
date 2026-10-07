@@ -1,4 +1,4 @@
-import type { Track } from "../track.ts";
+import type { Track } from "./track.ts";
 
 export interface TrackRepository {
   findById(id: string): Promise<Track | undefined>;

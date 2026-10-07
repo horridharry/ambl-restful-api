@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { availabilityLabel } from "./track.ts";
+import { availabilityLabel } from "../src/tracks/track.ts";
 
 describe("availabilityLabel", () => {
   it("Counts whole days between two dates and rounds down", () => {

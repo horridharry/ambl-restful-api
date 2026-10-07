@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { TrackAlreadyExistsError, TrackNotFoundError } from "../errors.ts";
-import { TrackInMemoryRepository } from "./repository/track-in-memory.repository.ts";
-import type { TrackInput } from "./track.schema.ts";
-import { TrackService } from "./track.service.ts";
+import { TrackAlreadyExistsError, TrackNotFoundError } from "../src/errors.ts";
+import { TrackInMemoryRepository } from "../src/tracks/track-in-memory.repository.ts";
+import type { TrackInput } from "../src/tracks/track.schema.ts";
+import { TrackService } from "../src/tracks/track.service.ts";
 
 const input: TrackInput = {
   type: "track",

@@ -130,7 +130,7 @@ These errors follow the shape set out by RFC 9457 which standardises error repor
 - The client owns the data and the server owns anything derived from it. The server sets `type`, `urn` and `label`. If the client sends a `urn`, it must match the ID. If they send a `label`, the server will ignore it and work out its own, so the label is always matching the dates.
 - The service throws domain errors (`TrackNotFoundError` and `TrackAlreadyExistsError`), and one error handler turns them into HTTP responses using the RFC 9457 format. Unexpected errors are logged and return a plain 500.
 - Logs are structured JSON written with pino.
-- On SIGTERM, the server stops taking new requests and finishes the ones in progress before shutting down. If they haven't finished after 10 seconds, it exits anyway.
+- On SIGTERM, the server stops taking new requests and finishes the ones in progress before shutting down. If they haven't finished after 10 seconds, it'll exits anyway.
 
 ## Details
 

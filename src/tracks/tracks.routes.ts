@@ -13,7 +13,10 @@ export function createTrackRouter(service: TrackService): Router {
   router.post("/", async (req, res) => {
     const input = trackInputSchema.parse(req.body);
     const track = await service.create(input);
-    res.status(201).location(`/tracks/${encodeURIComponent(track.id)}`).json(track);
+    res
+      .status(201)
+      .location(`/tracks/${encodeURIComponent(track.id)}`)
+      .json(track);
   });
 
   return router;

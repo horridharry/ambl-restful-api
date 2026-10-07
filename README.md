@@ -15,6 +15,105 @@ This is a small RESTful JSON API for adding and fetching AMBL's `track` objects.
 - Run `npm test` to run all tests
 - Run `npm run check` to run typecheck, lint, format and tests together
 
+### API Contract
+
+The API has 3 endpoints.
+
+#### GET `/healthz`
+
+| Code | Meaning            |
+| ---- | ------------------ |
+| 200  | { "status": "OK" } |
+
+#### GET `/tracks/:id`
+
+| Code | Meaning                                          |
+| ---- | ------------------------------------------------ |
+| 200  | A `track` object                                 |
+| 404  | Not Found. No matching `track` found for that id |
+
+#### POST `/tracks`
+
+| Code | Meaning                                                                                            |
+| ---- | -------------------------------------------------------------------------------------------------- |
+| 201  | A `track` object is successfully created. Returns: the `track` object.                             |
+| 400  | Invalid track. 'Example: The supplied `id` must be between 1 and 32 characters and letters/digits' |
+| 409  | A track already exists for id: `id`                                                                |
+
+A `201` also sends a `Location: /tracks/<id>` header pointing at the newly made track
+
+#### POST Request Body
+
+This is the minimum accepted request
+
+```
+{
+  "id": "nznx3r",
+  "titles": { "primary": "AC/DC", "secondary": "Highway to Hell" },
+  "availability": {
+    "from": "2019-02-13T11:03:05Z",
+    "to": "2019-03-15T11:00:00Z"
+  }
+}
+```
+
+A `201` responds with the full `track` object containing a server calculated `urn`, `type`, `label` and missing titles like `tertiary`.
+
+```
+{
+  "type": "track",
+  "id": "nznx3r",
+  "urn": "urn:bbc:sounds:track:nznx3r",
+  "titles": { "primary": "AC/DC", "secondary": "Highway to Hell", "tertiary": null },
+  "availability": {
+    "from": "2019-02-13T11:03:05Z",
+    "to": "2019-03-15T11:00:00Z",
+    "label": "Available for 29 days"
+  }
+}
+```
+
+#### GET Reponse
+
+A `200` returns the same as above within the `201` response.
+
+### Errors
+
+A `404` error returns:
+
+```json
+{
+  "status": 404,
+  "title": "Not Found",
+  "detail": "No matching `track` found for that id `id`"
+}
+```
+
+A `400` error returns with an `errors` list so our clients know which fields need fixing.
+
+```json
+{
+  "status": 400,
+  "title": "Invalid track",
+  "detail": "The request body failed validation",
+  "errors": [
+    { "path": "availability.to", "message": "'to' must be after 'from'" }
+  ]
+}
+```
+
+A `409` error returns:
+
+```json
+{
+  "status": 409,
+  "title": "Conflict",
+  "detail": "A track already exists for id: `id`"
+}
+```
+
+These errors follow the shape set out by RFC 9457 which standardises error reporting for HTTP APIs.
+
 ## Details
 
 - API should run on a localhost port
@@ -48,3 +147,7 @@ These are easily reversible assumptions I have made to priortise development rat
 - [Zod](https://zod.dev/): Used to validate incoming data.
 - [Pino-http](https://github.com/pinojs/pino-http): A high speed logger used to make structured logs.
 - [Vitest](https://vitest.dev/): A Vite native testing framework. Can run TS.
+
+```
+
+```

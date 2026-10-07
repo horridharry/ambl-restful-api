@@ -15,6 +15,7 @@
     "tests/track.schema.test.ts",
     "tests/track.service.test.ts",
     "tests/app.test.ts",
-    "tests/track.test.ts"
+    "tests/track.test.ts",
+    "tests/DUMMY_TRACK.ts"
   ]
 }

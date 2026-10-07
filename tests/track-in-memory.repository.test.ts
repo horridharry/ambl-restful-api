@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { TrackInMemoryRepository } from "../src/tracks/track-in-memory.repository.ts";
-import track from "../src/tracks/DUMMY_TRACK.ts";
+import track from "./DUMMY_TRACK.ts";
 
 describe("TrackInMemoryRepository", () => {
   let repository: TrackInMemoryRepository;

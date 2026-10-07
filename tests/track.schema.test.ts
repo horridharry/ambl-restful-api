@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { trackInputSchema } from "../src/tracks/track.schema.ts";
-import dummyTrack from "../src/tracks/DUMMY_TRACK.ts";
+import dummyTrack from "./DUMMY_TRACK.ts";
 
 describe("trackInputSchema", () => {
   it("Accepts the dummy track", () => {

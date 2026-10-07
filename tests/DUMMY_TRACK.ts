@@ -1,4 +1,4 @@
-import type { Track } from "./track.ts";
+import type { Track } from "../src/tracks/track.ts";
 
 const track: Track = {
   type: "track",

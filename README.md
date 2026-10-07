@@ -147,7 +147,3 @@ These are easily reversible assumptions I have made to priortise development rat
 - [Zod](https://zod.dev/): Used to validate incoming data.
 - [Pino-http](https://github.com/pinojs/pino-http): A high speed logger used to make structured logs.
 - [Vitest](https://vitest.dev/): A Vite native testing framework. Can run TS.
-
-```
-
-```

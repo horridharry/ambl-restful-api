@@ -60,7 +60,7 @@ describe("GET /tracks/:id", () => {
     expect(res.body).toEqual({
       status: 404,
       title: "Not Found",
-      detail: "No track found with id 'unknown'",
+      detail: "No matching track found for that id: 'unknown'",
     });
   });
 });

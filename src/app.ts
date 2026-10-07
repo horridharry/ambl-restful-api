@@ -4,13 +4,17 @@ import { createTrackRouter } from "./tracks/tracks.routes.ts";
 import { TrackService } from "./tracks/track.service.ts";
 import type { TrackRepository } from "./tracks/track.repository.ts";
 import { TrackInMemoryRepository } from "./tracks/track-in-memory.repository.ts";
+import { pinoHttp } from "pino-http";
+import { logger } from "./logger.ts";
 
 export function createApp(
   trackRepository: TrackRepository = new TrackInMemoryRepository(),
 ): Express {
   const app = express();
   app.disable("x-powered-by"); // Remove 'X-Powered-By: Express' from headers for security
-  app.use(express.json());
+
+  app.use(pinoHttp({ logger }));
+  app.use(express.json({ limit: "100kb" }));
 
   app.get("/healthz", (_req, res) => {
     res.json({ status: "OK" });

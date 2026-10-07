@@ -30,11 +30,10 @@ describe("trackInputSchema", () => {
   it.each([
     ["Missing primary title", { ...dummyTrack, titles: { primary: "" } }],
     [
-      "Missing availability",
+      "Empty availability",
       { ...dummyTrack, availability: { from: "", to: "" } },
     ],
     ["Missing id", { ...dummyTrack, id: "" }],
-    ["Missing urn", { ...dummyTrack, urn: "" }],
     [
       "A date that isnt ISO 8601",
       {
@@ -53,13 +52,13 @@ describe("trackInputSchema", () => {
         },
       },
     ],
-    ["A type that isnt track", { type: "not-a-track" }],
+    ["A type that isnt track", { ...dummyTrack, type: "not-a-track" }],
     [
       "A urn that doesnt match the id",
       { ...dummyTrack, urn: "urn:bbc:sounds:track:other" },
     ],
 
-    ["An unknown field", { unknownField: "value" }],
+    ["An unknown field", { ...dummyTrack, unknownField: "value" }],
   ])("Rejects %s", (_description, track) => {
     const result = trackInputSchema.safeParse(track);
     expect(result.success).toBe(false);

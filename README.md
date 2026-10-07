@@ -21,10 +21,11 @@ These are easily reversible assumptions I have made to priortise development rat
 4. The `label` is likely generated from `from` and `to`, and as whole days rounded down. In the example object, there is exactly 29 days and just under 24 hours, which matches to "Available for 29 days".
 5. The fields `from` and `to` are ISO 8601 UTC timestamps, and `to` must be after `from`.
 6. There is one track returned per `POST`.
-7. Any unknown fields should be rejected with a 400, so typos are surfaced and,
-8. a missing track should return a 404 with a JSON error body.
+7. Any unknown fields should be rejected with a 400, so typos are surfaced.
+8. A missing track should return a 404 with a JSON error body, whilst a duplicate `POST` should probably return a 409 conflict error.
 
 ### Open questions
 
 - Should the label calculate days from `from`, or should it count days left from today?
 - Do ids come from something upstream and/or could the user supply them?
+- Should the `GET` request return a track outside its availability window?

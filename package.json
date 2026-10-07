@@ -1,13 +1,42 @@
 {
   "name": "ambl-restful-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A RESTful API for fetching and adding `track` objects",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch src/server.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/server.js",
+    "test": "vitest run",
+    "lint": "eslint . && tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run format:check && npm test"
+  },
+  "engines": {
+    "node": ">=24"
   },
   "keywords": [],
-  "author": "",
+  "author": "Harrison Ndguba",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "module",
+  "dependencies": {
+    "express": "^5.2.1",
+    "pino": "^10.4.0",
+    "pino-http": "^11.0.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.19.1",
+    "@types/supertest": "^7.2.1",
+    "eslint": "^10.12.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.9",
+    "supertest": "^7.3.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.1",
+    "vitest": "^5.0.3"
+  }
 }

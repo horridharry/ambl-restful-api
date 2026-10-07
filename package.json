@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A RESTful API for fetching and adding `track` objects",
   "scripts": {
-    "dev": "node --watch src/server.ts | pino-pretty"
+    "dev": "node --watch src/server.ts | pino-pretty",
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/server.js",
     "test": "vitest run",

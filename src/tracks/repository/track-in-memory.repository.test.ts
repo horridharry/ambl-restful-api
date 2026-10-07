@@ -2,7 +2,6 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { TrackInMemoryRepository } from "./track-in-memory.repository.ts";
 import track from "../DUMMY_TRACK.ts";
 
-
 describe("TrackInMemoryRepository", () => {
   let repository: TrackInMemoryRepository;
 
@@ -22,7 +21,10 @@ describe("TrackInMemoryRepository", () => {
 
   it("Replaces a track saved again with the same id", async () => {
     await repository.save(track);
-    const updated = { ...track, titles: { ...track.titles, primary: "Updated" } };
+    const updated = {
+      ...track,
+      titles: { ...track.titles, primary: "Updated" },
+    };
 
     await repository.save(updated);
 

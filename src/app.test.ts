@@ -2,7 +2,7 @@ import request from "supertest";
 import { describe, expect, it } from "vitest";
 import { createApp } from "./app.ts";
 
-describe("GET /health", () => {
+describe("GET /healthz", () => {
   it("Returns 200 with status: OK", async () => {
     const res = await request(createApp()).get("/health");
 

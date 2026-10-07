@@ -4,18 +4,25 @@ This is a small RESTful JSON API for adding and fetching AMBL's `track` objects.
 
 ## How to run the API
 
-### Requirements
+You need Node 24 or later.
 
-- You need Node 24 or later.
+```bash
+npm ci            # clean install all packages.
+npm run dev       # start on http://localhost:3000
+npm test          # to run all tests
+npm run check     # to run typecheck, lint, format and tests together
+```
 
-### Instructions
+While server is running, use the curl commands below to test it out:
 
-- Run `npm ci` to clean install all packages.
-- Run `npm run dev` to start on http://localhost:3000
-- Run `npm test` to run all tests
-- Run `npm run check` to run typecheck, lint, format and tests together
+```bash
+curl -i -X POST localhost:3000/tracks -H "Content-Type: application/json" \
+  -d '{"id":"bbc001","titles":{"primary":"AC/DC","secondary":"Highway to Hell"},"availability":{"from":"2019-02-13T11:03:05Z","to":"2019-03-15T11:00:00Z"}}'
 
-### API Contract
+curl -i localhost:3000/tracks/bbc001
+```
+
+## API Contract
 
 The API has 3 endpoints.
 
@@ -140,6 +147,14 @@ These are easily reversible assumptions I have made to priortise development rat
 
 - Should the label calculate days from `from`, or should it count days left from today?
 - Should the `GET` request return a track outside its availability window?
+
+## What should be added with more time
+
+1. It definitly needs a DB to store the tracks so it persists and survives restarts. I'd move the duplicate check to a unique constraint to avoid race conditions.
+2. There should be more structured logging with request IDs on every line for more thorough obseravability.
+3. We'd need to implement rate limiting on POST to avoid any abuse of the endpoint and we should authenticate users to prevent us recieveing data from malicious actors.
+4. Clients and users would make use of a `GET /tracks` endpoint with pagination and filters.
+5. There should be metrics (latency and error rate to start) and a readiness check thats tests our DB - if we had one
 
 ## Packages
 

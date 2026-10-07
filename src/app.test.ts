@@ -4,7 +4,7 @@ import { createApp } from "./app.ts";
 
 describe("GET /healthz", () => {
   it("Returns 200 with status: OK", async () => {
-    const res = await request(createApp()).get("/health");
+    const res = await request(createApp()).get("/healthz");
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual({ status: "OK" });

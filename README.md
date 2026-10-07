@@ -13,7 +13,7 @@ This is a small RESTful JSON API for adding and fetching AMBL's `track` objects.
 - Run `npm ci` to clean install all packages.
 - Run `npm run dev` to start on http://localhost:3000
 - Run `npm test` to run all tests
-- Run `npm run checkall` to run typecheck,lint, format and tests together
+- Run `npm run check` to run typecheck, lint, format and tests together
 
 ## Details
 
@@ -24,7 +24,7 @@ This is a small RESTful JSON API for adding and fetching AMBL's `track` objects.
 - A response when nothing is found
 - A design to support another data source in the future
 
-### My assumptions
+## My assumptions
 
 These are easily reversible assumptions I have made to priortise development rather than blocking on questions.
 

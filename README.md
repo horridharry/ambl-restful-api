@@ -121,6 +121,17 @@ A `409` error returns:
 
 These errors follow the shape set out by RFC 9457 which standardises error reporting for HTTP APIs.
 
+## Design Decisions
+
+- The codebase is split into three layers: routes handle HTTP, the service holds the business rules, and the repository stores tracks.
+- Express only appears in `app.ts` and `tracks.routes.ts`, so moving to another framework means rewriting those two files.
+- The service depends on the `TrackRepository` interface instead of the `TrackInMemoryRepository`. That means adding another data source, like a database, requires rewriting a class with the same two methods and passing it into `createApp`.
+- The client supplies the track ID (assuming IDs are created upstream.). I used POST instead of PUT because the brief asks to add tracks; PUT would replace an existing track, and overwriting one by accident is the worser mistake.
+- The client owns the data and the server owns anything derived from it. The server sets `type`, `urn` and `label`. If the client sends a `urn`, it must match the ID. If they send a `label`, the server will ignore it and work out its own, so the label is always matching the dates.
+- The service throws domain errors (`TrackNotFoundError` and `TrackAlreadyExistsError`), and one error handler turns them into HTTP responses using the RFC 9457 format. Unexpected errors are logged and return a plain 500.
+- Logs are structured JSON written with pino.
+- On SIGTERM, the server stops taking new requests and finishes the ones in progress before shutting down. If they haven't finished after 10 seconds, it exits anyway.
+
 ## Details
 
 - API should run on a localhost port
